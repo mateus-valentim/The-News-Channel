@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Category;
 use App\Models\News;
+use App\Models\Tag;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,18 +20,32 @@ class NewsFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => $this->faker->sentence(),
+            'title' => fake()->sentence(6),
+
             'content_json' => json_encode([
-                'time' => now()->timestamp,
-                'blocks' => [
+                'type' => 'doc',
+                'content' => [
                     [
                         'type' => 'paragraph',
-                        'data' => ['text' => $this->faker->paragraph()]
-                    ]
-                ]
+                        'content' => [
+                            [
+                                'type' => 'text',
+                                'text' => fake()->paragraph(),
+                            ],
+                        ],
+                    ],
+                ],
             ]),
-            'content_html' => '<p>' . implode('</p><p>', $this->faker->paragraphs(3)) . '</p>',
-            'category_id' => fn () => Category::inRandomOrder()->first()?->id ?? Category::factory(),
+
+
+            'cover_image' => "https://img.magnific.com/free-vector/illustration-gallery-icon_53876-27002.jpg?semt=ais_hybrid&w=740&q=80",
+
+            'category_id' => Category::inRandomOrder()->first()?->id ?? Category::factory(),
+
+            'user_id' => 1,
+
+            'views' => fake()->numberBetween(0, 1000),
         ];
     }
+
 }

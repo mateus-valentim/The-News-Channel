@@ -16,8 +16,9 @@ return new class extends Migration
             $table->string('title');
             $table->string('cover_image')->nullable();
             $table->json('content_json');
-            $table->longText('content_html');
             $table->foreignId('category_id')->nullable()->constrained('categories')->nullOnDelete();
+            $table->foreignId('user_id')->nullable()->constrained('users')->cascadeOnDelete();
+            $table->integer('views')->default(0);
             $table->timestamps();
         });
     }
