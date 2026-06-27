@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\V1\CategoryController;
+use App\Http\Controllers\api\V1\DashboardController;
 use App\Http\Controllers\Api\V1\NewsController;
 use App\Http\Controllers\Api\V1\TagController;
 use App\Http\Controllers\api\V1\UserController;
@@ -16,5 +17,6 @@ Route::prefix('v1')->group(function () {
     Route::apiResource('tags', TagController::class);
     Route::apiResource('news', NewsController::class);
     Route::apiResource('users', UserController::class);
+    Route::get('/dashboard/stats', [DashboardController::class, 'getStats']);
 });
 

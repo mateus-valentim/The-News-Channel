@@ -42,6 +42,13 @@ class StoreUserRequest extends FormRequest
                 'string',
                 'min:8'
             ],
+
+            'profile_image' => [
+                'nullable',
+                'image',
+                'mimes:jpg,jpeg,png,webp',
+                'max:2048',
+            ],
         ];
     }
 
@@ -59,6 +66,10 @@ class StoreUserRequest extends FormRequest
             'password.required' => 'A senha é obrigatória.',
             'password.string' => 'A senha deve ser um texto válido.',
             'password.min' => 'A senha deve possuir no mínimo :min caracteres.',
+
+            'profile_image.image' => 'O arquivo enviado deve ser uma imagem.',
+            'profile_image.mimes' => 'A imagem deve ser JPG, JPEG, PNG ou WEBP.',
+            'profile_image.max' => 'A imagem deve possuir no máximo 2 MB.',
 
         ];
     }

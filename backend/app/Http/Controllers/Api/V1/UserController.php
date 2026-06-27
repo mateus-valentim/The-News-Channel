@@ -7,6 +7,7 @@ use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -40,6 +41,9 @@ class UserController extends Controller
     public function store(StoreUserRequest $request)
     {
         $data = $request->validated();
+        if ($request->hasFile('profile_image')) {
+            $data['profile_image'] = $request->file('profile_image')->store('users', 'public');
+        }
         $data['password'] = Hash::make(($data['password']));
         $user = User::create($data);
         return response()->json($user, 200);
@@ -59,6 +63,14 @@ class UserController extends Controller
     public function update(StoreUserRequest $request, User $user)
     {
         $data = $request->validated();
+        if($request->hasFile('profile_image')) {
+            if($user->profile_image){
+                Storage::disk('public')->delete($user->profile_image);
+
+                $data['profile_image'] = $request->file('profile_image')->store('users', 'public');
+
+            }
+        }
         if(isset($data['password'])) {
             $data['password'] = Hash::make(($data['password']));
         }
@@ -70,6 +82,9 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        if($user->profile_image){
+            Storage::disk('public')->delete($user->profile_image);
+        }
         $user->delete();
         return response()->json(null, 204);
     }
