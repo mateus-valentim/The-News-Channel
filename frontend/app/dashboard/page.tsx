@@ -10,7 +10,7 @@ export default function Dashboard() {
     if(!user) return <LoginPage />;
 
     return (
-        <div>
+        <div className="bg-white w-full h-full">
             <h1>Welcome, {user.name}</h1>
             <button onClick={logout}>Logout</button>
         </div>
