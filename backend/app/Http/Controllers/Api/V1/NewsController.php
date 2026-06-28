@@ -24,7 +24,7 @@ class NewsController extends Controller
         $paginateBy = min($request->query('paginate_by',10), 100);
 
         $sortBy = $request->query('sort_by','id');
-        $allowedSorts = ['id', 'title', 'created_at', 'updated_at'];
+        $allowedSorts = ['id', 'title', 'created_at', 'updated_at', 'views'];
         if(!in_array($sortBy, $allowedSorts)) {
             $sortBy = 'id';
         }
@@ -88,7 +88,11 @@ class NewsController extends Controller
     {
         $news->increment('views');
 
-        return response()->json($news->fresh(), 200);
+        return response()->json($news->fresh()->load([
+            'tags:id,name',
+            'user:id,name',
+            'category:id,name',
+        ]), 200);
     }
 
     /**
