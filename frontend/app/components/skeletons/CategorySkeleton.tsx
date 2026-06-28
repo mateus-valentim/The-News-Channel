@@ -20,7 +20,7 @@ export function CategorySkeleton() {
                         <TableHead className="w-20 font-semibold">ID</TableHead>
                         <TableHead className="font-semibold">Nome</TableHead>
                         <TableHead className=" font-semibold">Criado em</TableHead>
-                        <TableHead className="font-semibold">Atualizado</TableHead>
+                        <TableHead className="font-semibold">Atualizado em</TableHead>
                         <TableHead className="font-semibold">Ações</TableHead>
                     </TableRow>
                 </TableHeader>

@@ -62,7 +62,7 @@ export function CategoryTable({ data, sortBy, orderBy, onSort, onSuccess }: Cate
 
                         <TableHead>
                             <TableSortHeader
-                                label="Atualizado"
+                                label="Atualizado em"
                                 field="updated_at"
                                 sortBy={sortBy}
                                 orderBy={orderBy}

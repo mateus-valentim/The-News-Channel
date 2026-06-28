@@ -62,7 +62,7 @@ export function TagTable({ data, sortBy, orderBy, onSort, onSuccess }: TagProps)
 
                         <TableHead>
                             <TableSortHeader
-                                label="Atualizado"
+                                label="Atualizado em"
                                 field="updated_at"
                                 sortBy={sortBy}
                                 orderBy={orderBy}

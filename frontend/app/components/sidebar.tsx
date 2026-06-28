@@ -13,13 +13,12 @@ import {
     SidebarMenu,
     SidebarMenuButton,
     SidebarMenuItem,
-    SidebarFooter,
+    SidebarFooter, useSidebar,
 } from "@/components/ui/sidebar"
 
 // Menu items configuration
 const items = [
     { title: "Dashboard", url: "/dashboard", icon: LayoutDashboard },
-    { title: "Usuários", url: "/dashboard/users", icon: Users },
     { title: "Categorias", url: "/dashboard/categories", icon: Layers },
     { title: "Tags", url: "/dashboard/tags", icon: Tag },
     { title: "Notícias", url: "/dashboard/news", icon: Newspaper },
@@ -36,6 +35,8 @@ interface AppSidebarProps {
 
 
 export function AppSidebar({ user, logout }: AppSidebarProps) {
+    const { setOpenMobile } = useSidebar();
+
     return (
         <Sidebar className="font-mono">
             <SidebarContent>
@@ -47,7 +48,7 @@ export function AppSidebar({ user, logout }: AppSidebarProps) {
                             {items.map((item) => (
                                 <SidebarMenuItem key={item.title}>
                                     <SidebarMenuButton asChild className="py-5 mb-1">
-                                        <Link href={item.url}>
+                                        <Link href={item.url} onClick={() => setOpenMobile(false)}>
                                             <item.icon className="w-5 h-5" />
 
                                             <span className="text-base">{item.title}</span>
