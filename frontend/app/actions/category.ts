@@ -4,7 +4,7 @@ import {Pagination} from "@/app/types/paginate";
 
 
 export const CategoryActions = {
-    getAll: (params?: {name?:string; page?:number; sort_by?:string; order_by?:string; paginate_by?:string}) => {
+    getAll: (params?: {name?:string; page?:number; sort_by?:string; sort_order?:string; paginate_by?:string}) => {
         return apiRequest<Pagination<Category>>('/api/v1/categories', 'GET', params);
     },
 

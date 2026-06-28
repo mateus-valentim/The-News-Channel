@@ -2,6 +2,23 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { SwrProvider } from './swr-provider';
+import { Montserrat, Roboto, Poppins } from 'next/font/google';
+
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  variable: '--font-montserrat',
+});
+
+const robotoMono = Roboto({
+  subsets: ['latin'],
+  variable: '--font-roboto',
+});
+
+const poppins = Poppins({
+  weight: ['400', '600', '700'],
+  subsets: ['latin'],
+  variable: '--font-poppins',
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

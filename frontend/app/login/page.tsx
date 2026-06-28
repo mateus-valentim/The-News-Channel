@@ -1,13 +1,14 @@
 'use client';
 
-import { useState, FormEvent, useEffect } from 'react';
+import { useState, FormEvent } from 'react';
 import { useAuth } from '../hooks/auth';
-import { useSearchParams } from 'next/navigation';
+import {Loader2} from "lucide-react";
+
 
 type ValidationErrors = Record<string, string[]> | never[] | unknown[];
 
 export default function LoginPage() {
-    const searchParams = useSearchParams();
+
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -16,17 +17,19 @@ export default function LoginPage() {
     const [errors, setErrors] = useState<ValidationErrors>([]);
     const [status, setStatus] = useState<string | null>(null);
 
-    const { login } = useAuth({
+
+
+    const { login, isLoggingIn } = useAuth({
         middleware: 'guest',
-        redirectIfAuthenticated: '/dashboard',
-    });
+        redirectIfAuthenticated: '/dashboard'
+    })
 
 
 
     const submitForm = async (event: FormEvent) => {
         event.preventDefault();
 
-        login({
+        await login({
             email,
             password,
             remember: shouldRemember,
@@ -104,9 +107,17 @@ export default function LoginPage() {
 
                         <button
                             type="submit"
-                            className="ml-4 inline-flex items-center rounded-md border border-transparent bg-gray-800 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-white transition duration-150 ease-in-out hover:bg-gray-700 focus:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 active:bg-gray-900"
+                            disabled={isLoggingIn}
+                            className="flex w-full justify-center items-center gap-2 rounded-md bg-blue-600 px-3 py-2 text-white disabled:opacity-70 disabled:cursor-not-allowed"
                         >
-                            Log in
+                            {isLoggingIn ? (
+                                <>
+                                    <Loader2 size={20} className="animate-spin" />
+                                    <span>Entrando...</span>
+                                </>
+                            ) : (
+                                <span>Entrar</span>
+                            )}
                         </button>
                     </div>
                 </form>
