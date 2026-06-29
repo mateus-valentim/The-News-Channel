@@ -13,12 +13,15 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware((['auth:sanctum']))->prefix('v1')->group(function () {
+Route::prefix('v1')->group(function () {
+    Route::get('/categories/all', [CategoryController::class, 'showAll']);
+    Route::get('/tags/all', [TagController::class, 'showAll']);
+
     Route::apiResource('categories', CategoryController::class);
     Route::apiResource('tags', TagController::class);
     Route::apiResource('news', NewsController::class);
     Route::apiResource('users', UserController::class);
     Route::get('/dashboard/stats', [DashboardController::class, 'getStats']);
-    route::post('/images/upload', [ImageController::class, 'StoreNewsImage']);
+    Route::post('/images/upload', [ImageController::class, 'StoreNewsImage']);
 });
 

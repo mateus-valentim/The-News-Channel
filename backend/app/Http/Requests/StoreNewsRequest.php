@@ -29,12 +29,17 @@ class StoreNewsRequest extends FormRequest
                 'string',
                 'min:3',
                 'max:255',
-                Rule::unique('news', 'title')->ignore($this->route('user'))
+                Rule::unique('news', 'title')->ignore($this->route('news'))
             ],
 
             'content_json' => [
                 'required',
                 'json',
+            ],
+
+            'content_html' => [
+                'required',
+                'string',
             ],
 
             'category_id' => [
@@ -50,11 +55,6 @@ class StoreNewsRequest extends FormRequest
                 'max:2048',
             ],
 
-            'user_id' => [
-                'required',
-                'integer',
-                'exists:users,id',
-            ],
 
             'tags' => [
                 'nullable',
@@ -80,6 +80,8 @@ class StoreNewsRequest extends FormRequest
             'content_json.required' => 'O conteúdo da notícia é obrigatório.',
             'content_json.json' => 'O conteúdo JSON informado é inválido.',
 
+            'content_html.required' => 'O conteúdo HTML é obrigatório.',
+            'content_html.string' => 'O conteúdo HTML deve ser um texto válido.',
 
             'category_id.required' => 'É obrigatório selecionar uma categoria.',
             'category_id.exists' => 'A categoria selecionada não existe.',
@@ -87,10 +89,6 @@ class StoreNewsRequest extends FormRequest
             'cover_image.image' => 'O arquivo enviado deve ser uma imagem.',
             'cover_image.mimes' => 'A imagem deve ser JPG, JPEG, PNG ou WEBP.',
             'cover_image.max' => 'A imagem deve possuir no máximo 2 MB.',
-
-            'user_id.required' => 'É obrigatório informar o autor da notícia.',
-            'user_id.integer' => 'O autor informado é inválido.',
-            'user_id.exists' => 'O usuário informado não existe.',
 
             'tags.array' => 'As tags devem ser enviadas em formato de lista.',
             'tags.*.integer' => 'Cada tag deve possuir um identificador válido.',

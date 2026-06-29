@@ -64,8 +64,9 @@ class NewsController extends Controller
         if ($request->hasFile('cover_image')) {
             $data['cover_image'] = $request->file('cover_image')->store('news', 'public');
         }
-
+        $data['user_id'] = auth()->id();
         $news = News::create($data);
+
 
         if(!empty($data['tags'])) {
             $news->tags()->sync($data['tags']);

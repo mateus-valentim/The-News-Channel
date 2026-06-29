@@ -35,6 +35,19 @@ class TagController extends Controller
         return response()->json($tags, 200);
     }
 
+    public function showAll(Request $request)
+    {
+        $searchName = $request->query('name');
+
+        $tags = Tag::query()->when($searchName, function ($query, $searchName) {
+            return $query->where('name', 'like', '%'.$searchName.'%');
+        })->get();
+
+
+        return response()->json($tags, 200);
+    }
+
+
     /**
      * Store a newly created resource in storage.
      */

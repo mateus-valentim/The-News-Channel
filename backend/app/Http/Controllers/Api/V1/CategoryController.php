@@ -35,6 +35,19 @@ class CategoryController extends Controller
 
         return response()->json($categories, 200);
     }
+    public function showAll(Request $request)
+    {
+        $searchName = $request->query('name');
+
+
+        $categories = Category::query()->when($searchName, function ($q, $searchName) {
+            return $q->where('name', 'like', '%' . $searchName . '%');
+        })->get();
+
+
+
+        return response()->json($categories, 200);
+    }
 
     /**
      * Store a newly created resource in storage.
