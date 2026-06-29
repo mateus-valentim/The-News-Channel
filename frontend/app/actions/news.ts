@@ -9,7 +9,7 @@ export const NewsActions = {
     },
 
     getOne: (id: number) => {
-        return apiRequest<Pagination<News>>(`/api/v1/news/${id}`, 'GET');
+        return apiRequest<News>(`/api/v1/news/${id}`, 'GET');
     },
 
     create: (data: FormData) => {
@@ -23,7 +23,8 @@ export const NewsActions = {
 
     delete: (id: number) => {
         return apiRequest<{ message: string }>(`/api/v1/news/${id}`, 'DELETE');
-    }
+    },
+
 
 
 }

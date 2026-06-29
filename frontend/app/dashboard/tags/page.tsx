@@ -61,7 +61,7 @@ export default function DashboardCategories() {
                 title="Tags"
                 description="Crie, edite e delete tags."
                 icon={Tag}
-                colorClass="text-black"
+                colorClass="text-purple-800"
                 borderColorClass="border-blue-100"
             />
 

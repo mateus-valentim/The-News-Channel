@@ -12,6 +12,11 @@ export const TagActions = {
         return apiRequest<Pagination<TagType>>('/api/v1/tags', 'GET', params);
     },
 
+    getAllNoPag: () => {
+        return apiRequest<TagType[]>(`/api/v1/tags/all`, 'GET');
+    },
+
+
     delete: (id: number) => {
         return apiRequest<{message: string}>(`/api/v1/tags/${id}`, 'DELETE');
     },

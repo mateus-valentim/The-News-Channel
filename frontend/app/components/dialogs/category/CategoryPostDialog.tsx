@@ -70,45 +70,10 @@ export function CategoryPostDialog({id, name, onSuccess}: Props) {
         <Dialog open={open} onOpenChange={setOpen}>
 
                 <DialogTrigger asChild>
-                    <Button variant="outline" className={
+                    <Button variant={null} className={
                         id
-                            ? `
-                    h-9
-                    px-4
-                    rounded-lg
-                    bg-green-500
-                    text-white
-                    font-medium
-                    shadow-sm
-                    transition-all
-                    duration-200
-                    hover:bg-green-600
-                    hover:shadow-md
-                    hover:-translate-y-0.5
-                    hover:text-white
-                    active:translate-y-0
-                    active:shadow-sm
-                    flex items-center gap-2
-                    `
-                            : `
-                    h-11
-                    px-5
-                    rounded-xl
-                    bg-blue-600
-                    text-white
-                    font-medium
-                    shadow-sm
-                    transition-all
-                    duration-200
-                    hover:bg-blue-500
-                    hover:shadow-md
-                    hover:-translate-y-0.5
-                    hover:text-white
-                    active:translate-y-0
-                    active:shadow-sm
-                    flex items-center gap-2
-                    paragraph
-                    `}
+                            ? `put_button`
+                            : `post_button`}
                     >    {id ? <Pencil size={18} /> : <Plus size={18} />}{!id && "Criar Categoria"}</Button>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-sm font-mono">

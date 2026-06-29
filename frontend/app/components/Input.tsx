@@ -5,7 +5,6 @@ import { Input } from "@/components/ui/input";
 interface InputSearchProps {
     value: string;
     onChange: (value: string) => void;
-    onKeyDown?: (e: KeyboardEvent) => void;
 }
 
 export function InputButton({

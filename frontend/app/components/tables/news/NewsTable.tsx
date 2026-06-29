@@ -10,6 +10,8 @@ import { News } from "@/app/types/news"
 import {TableSortHeader} from '../TableSortHeader'
 import {Pencil, Trash2} from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {NewsDeleteDialog} from "@/app/components/dialogs/news/NewsDeleteDialog";
+import {useRouter} from "next/navigation";
 
 
 interface NewsProps {
@@ -21,9 +23,7 @@ interface NewsProps {
 }
 
 export function NewsTable({ data, sortBy, orderBy, onSort, onSuccess }: NewsProps) {
-    const formatDate = (dateString: string) => {
-        return new Intl.DateTimeFormat('pt-BR').format(new Date(dateString));
-    };
+    const router = useRouter();
 
     return (
         <div className='border border-gray-200 bg-white shadow-sm rounded-xl'>
@@ -104,11 +104,8 @@ export function NewsTable({ data, sortBy, orderBy, onSort, onSuccess }: NewsProp
 
                                 <TableCell className="text-center">
                                     <div className="flex flex-row gap-2 justify-center items-center">
-                                        <Button variant="outline" className="h-9 px-4 rounded-lg bg-green-500 text-white font-medium shadow-sm transition-all
-                                        duration-200 hover:bg-green-600 hover:shadow-md hover:-translate-y-0.5 hover:text-white active:translate-y-0 active:shadow-sm
-                                        flex items-center gap-2"><Pencil size={18} /></Button>
-                                        <Button variant="outline" className="h-9 px-4 rounded-lg border-red-300 text-red-600 hover:bg-red-50 hover:border-red-500
-                                        hover:text-red-700 transition-all duration-200 flex items-center gap-2"><Trash2 size={16} /></Button>
+                                        <Button variant={null} className="put_button" onClick={()=>router.push(`/dashboard/news/${noticia.id}/edit`)}><Pencil size={18} /></Button>
+                                        <NewsDeleteDialog id={noticia.id} onSuccess={onSuccess}></NewsDeleteDialog>
                                     </div>
                                 </TableCell>
                             </TableRow>

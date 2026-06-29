@@ -12,6 +12,11 @@ export const CategoryActions = {
         return apiRequest<Pagination<Category>>(`/api/v1/categories/${id}`, 'GET');
     },
 
+    getAllNoPag: () => {
+        return apiRequest<Category[]>(`/api/v1/categories/all`, 'GET');
+    },
+
+
     create: (data: FormData) => {
         return apiFormRequest<Category>('/api/v1/categories', data, 'POST');
     },

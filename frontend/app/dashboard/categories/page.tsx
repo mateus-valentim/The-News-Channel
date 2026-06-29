@@ -60,7 +60,7 @@ export default function DashboardCategories() {
                 title="Categorias"
                 description="Crie, edite e delete categorias."
                 icon={Layers}
-                colorClass="text-black"
+                colorClass="text-blue-800"
                 borderColorClass="border-blue-100"
             />
 

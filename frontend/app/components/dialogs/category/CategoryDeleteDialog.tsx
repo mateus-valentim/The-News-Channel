@@ -60,22 +60,8 @@ export function CategoryDeleteDialog({id, onSuccess}: Props) {
 
                 <DialogTrigger asChild>
                     <Button
-                        variant="outline"
-                        className="
-        h-9
-        px-4
-        rounded-lg
-        border-red-300
-        text-red-600
-        hover:bg-red-50
-        hover:border-red-500
-        hover:text-red-700
-        transition-all
-        duration-200
-        flex
-        items-center
-        gap-2
-    "
+                        variant={null}
+                        className="delete_button border-1 border-red-300"
                     >
                         <Trash2 size={16} />
                     </Button>

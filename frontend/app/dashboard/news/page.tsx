@@ -12,13 +12,12 @@ import {CrudPagination} from "@/app/components/pagination/Paginate";
 import {SelectPaginate} from "@/app/components/pagination/SelectPaginate";
 import {InputButton} from "@/app/components/Input";
 import { Button } from "@/components/ui/button"
-
-
-
+import {useRouter} from "next/navigation";
 
 
 export default function DashboardNews() {
 
+    const router = useRouter();
     const [news, setNews] = useState<News[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [pagination, setPagination] = useState<Pagination<News> | null>(null);
@@ -60,7 +59,7 @@ export default function DashboardNews() {
                 title="Notícias"
                 description="Crie, edite e delete notícias."
                 icon={Newspaper}
-                colorClass="text-black"
+                colorClass="text-orange-600"
                 borderColorClass="border-blue-100"
             />
 
@@ -85,23 +84,7 @@ export default function DashboardNews() {
                     </Button>
                 </div>
                 <div className="px-8">
-                    <Button variant="outline" className="h-11
-                    px-5
-                    rounded-xl
-                    bg-blue-600
-                    text-white
-                    font-medium
-                    shadow-sm
-                    transition-all
-                    duration-200
-                    hover:bg-blue-500
-                    hover:shadow-md
-                    hover:-translate-y-0.5
-                    hover:text-white
-                    active:translate-y-0
-                    active:shadow-sm
-                    flex items-center gap-2
-                    paragraph">
+                    <Button variant={null} className="post_button" onClick={() => router.push("/dashboard/news/create")}>
                         <Plus size={18} />Criar Notícia
                     </Button>
                 </div>
@@ -162,6 +145,8 @@ export default function DashboardNews() {
                     </div>
                 )
             }
+
+
 
 
         </div>

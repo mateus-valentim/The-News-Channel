@@ -1,3 +1,6 @@
+@import '../styles/_variables.scss';
+@import '../styles/_keyframe-animations.scss';
+
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
@@ -166,23 +169,10 @@ body {
   }
 
   .delete_button {
-    @apply h-9
-    px-4
-    rounded-lg
-    border
-    border-red-300
-    text-red-600
-    hover:bg-red-50
-    hover:border-red-500
-    hover:text-red-700
-    hover:-translate-y-0.5
-    active:translate-y-0
-    active:shadow-sm
-    transition-all
-    duration-200
-    flex
-    items-center
-    gap-2;
+    @apply h-9 px-4 rounded-lg border-2 border-red-300 text-red-600
+    hover:bg-red-50 hover:border-red-500 hover:text-red-700
+    hover:-translate-y-0.5 active:translate-y-0 active:shadow-sm
+    transition-all duration-200 flex items-center gap-2;
   }
 
   .put_button {
@@ -207,26 +197,7 @@ body {
   }
 
   .post_button {
-    @apply h-11
-    px-5
-    rounded-xl
-    bg-blue-600
-    text-white
-    text-base
-    md:text-lg
-    font-paragraph
-    font-medium
-    shadow-sm
-    transition-all
-    duration-200
-    hover:bg-blue-500
-    hover:shadow-md
-    hover:text-white
-    hover:-translate-y-0.5
-    active:translate-y-0
-    active:shadow-sm
-    flex
-    items-center
-    gap-2;
+    @apply h-11 p-5 rounded-xl bg-blue-600 text-white font-medium shadow-sm transition-all duration-200
+    hover:bg-blue-500 hover:shadow-md hover:-translate-y-0.5 hover:text-white active:translate-y-0 active:shadow-sm flex items-center gap-2;
   }
 }
