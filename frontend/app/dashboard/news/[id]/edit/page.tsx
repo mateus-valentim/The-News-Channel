@@ -274,7 +274,6 @@ export default function EditNews({ params }: { params: Promise<{ id: string }> }
 
 
                 <NewsPreview
-                    title={title}
                     html={contentHtml}
 
                 />

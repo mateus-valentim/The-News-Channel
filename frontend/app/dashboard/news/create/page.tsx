@@ -182,6 +182,7 @@ export default function CreateNews() {
                                     {
                                         setContentJson((editor as Editor).getJSON())
                                         setContentHtml((editor as Editor).getHTML())
+
                                     }
                             }
                             />
@@ -198,8 +199,10 @@ export default function CreateNews() {
                 <div className="flex justify-end pb-8">
                     <Button
                         size="lg"
+                        variant={null}
                         onClick={handleSubmit}
                         disabled={isSubmitting}
+                        className="post_button"
                     >
                         {isSubmitting ? "Publicando..." : "Publicar Notícia"}
                     </Button>
@@ -207,7 +210,6 @@ export default function CreateNews() {
 
 
                 <NewsPreview
-                    title={title}
                     html={contentHtml}
 
                 />

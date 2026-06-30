@@ -18,6 +18,10 @@ import { Superscript } from "@tiptap/extension-superscript"
 import { Selection } from "@tiptap/extensions"
 import {CustomImage} from "@/components/tiptap-templates/simple/extensions/CustomImage";
 import { BubbleMenu } from "@tiptap/react/menus";
+import { Color } from '@tiptap/extension-color';
+import {CustomHeading} from "./extensions/CustomHeading"
+
+
 // --- UI Primitives ---
 import { Button } from "@/components/tiptap-ui-primitive/button"
 import { Spacer } from "@/components/tiptap-ui-primitive/spacer"
@@ -212,6 +216,7 @@ export function SimpleEditor({ onUpdate, content }: SimpleEditorProps) {
     extensions: [
       StarterKit.configure({
         horizontalRule: false,
+          heading: false,
         link: {
           openOnClick: false,
           enableClickSelection: true,
@@ -221,8 +226,12 @@ export function SimpleEditor({ onUpdate, content }: SimpleEditorProps) {
         TextStyle,
         FontFamily,
         FontSize,
+        Color,
         CustomImage.configure({
             allowBase64: true,
+        }),
+        CustomHeading.configure({
+            levels: [1, 2, 3, 4],
         }),
       HorizontalRule,
       TextAlign.configure({ types: ["heading", "paragraph"] }),
@@ -281,10 +290,10 @@ export function SimpleEditor({ onUpdate, content }: SimpleEditorProps) {
             return parseInt(inlineSize.replace("px", ""));
         }
 
-        if (editor?.isActive("heading", { level: 1 })) return 32; // H1
-        if (editor?.isActive("heading", { level: 2 })) return 24; // H2
-        if (editor?.isActive("heading", { level: 3 })) return 20; // H3
-        if (editor?.isActive("heading", { level: 4 })) return 16; // H4
+        if (editor?.isActive("heading", { level: 1 })) return 32;
+        if (editor?.isActive("heading", { level: 2 })) return 24;
+        if (editor?.isActive("heading", { level: 3 })) return 20;
+        if (editor?.isActive("heading", { level: 4 })) return 16;
 
         return 16;
     };
@@ -312,12 +321,14 @@ export function SimpleEditor({ onUpdate, content }: SimpleEditorProps) {
   return (
     <div className="simple-editor-wrapper">
       <EditorContext.Provider value={{ editor }}>
-        <Toolbar
+        <Toolbar className="max-w-full overflow-x-auto whitespace-nowrap flex-nowrap scrollbar-hide m-0"
           ref={toolbarRef}
           style={{
             ...(isMobile
               ? {
                   bottom: `calc(100% - ${height - rect.y}px)`,
+                    left:0,
+                    right:0,
                 }
               : {}),
           }}
@@ -381,6 +392,12 @@ export function SimpleEditor({ onUpdate, content }: SimpleEditorProps) {
                 >
                     <Plus className="w-3.5 h-3.5" />
                 </button>
+                <input
+                    type="color"
+                    onInput={(e) => editor.chain().focus().setColor(e.currentTarget.value).run()}
+                    value={editor.getAttributes('textStyle').color || '#000000'}
+                    className="w-8 h-8 cursor-pointer"
+                />
             </ToolbarGroup>
 
             {editor && (

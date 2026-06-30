@@ -61,7 +61,7 @@ export default function CategoryComboBox({onChange, value}: comboBoxProps) {
                 ):
                     <><ComboboxEmpty>No items found.</ComboboxEmpty><ComboboxList>
                         {(item) => (
-                            <ComboboxItem key={item.id} value={String(item.name)} onClick={(value) => onChange?.(Number(item.id))}>
+                            <ComboboxItem key={item.id} value={String(item.name)} onClick={() => onChange?.(Number(item.id))}>
                                 {item.name}
                             </ComboboxItem>
                         )}

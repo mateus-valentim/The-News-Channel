@@ -66,7 +66,7 @@ const MultipleSelectorDemo = ({onChange, value}:TagSelectorProps) => {
 
     return (
         <div className="w-full ">
-            <MultipleSelector className='w-[100%] rounded-lg'
+            <MultipleSelector className='w-full rounded-lg'
                 defaultOptions={options}
                 value={selectedOptions}
                 placeholder="Selecione as tags."
