@@ -61,15 +61,24 @@ export default function Home() {
                         category={category}
                         tags={tags}
                         onSearchChange={setSearch}
-                        onCategoryChange={setCategory}
-                        onTagsChange={setTags}
+                        onCategoryChange={(value)=>{
+                            setCategory(value)
+                            setPage(1)
+                        }}
+                        onTagsChange={(value)=>{
+                            setTags(value)
+                            setPage(1)
+                        }}
                         onClear={() => {
                             setSearch("");
                             setCategory(null);
                             setTags([]);
                             setTitle("")
                         }}
-                        onButtonClick={()=>setTitle(search)}
+                        onButtonClick={()=>{
+                            setTitle(search)
+                            setPage(1)
+                        }}
                     />
                 </div>
 
