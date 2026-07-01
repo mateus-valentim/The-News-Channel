@@ -87,19 +87,19 @@ export function NewsTable({ data, sortBy, orderBy, onSort, onSuccess }: NewsProp
                                     {noticia.views}
                                 </TableCell>
                                 <TableCell className='font-medium text-black'>
-                                    {noticia.category.name}
+                                    {noticia?.category?.name}
                                 </TableCell>
                                 <TableCell>
                                     <div className="flex flex-wrap gap-2">
                                         {noticia.tags.map((tag) => (
-                                            <span key={tag.id} className="rounded-full bg-green-500 px-2 py-1 text-xs font-medium text-white">
-                                                {tag.name}
+                                            <span key={tag?.id} className="rounded-full bg-green-500 px-2 py-1 text-xs font-medium text-white">
+                                                {tag?.name}
                                             </span>
                                         ))}
                                     </div>
                                 </TableCell>
                                 <TableCell className='font-medium text-black'>
-                                    {noticia.user.name}
+                                    {noticia?.user?.name}
                                 </TableCell>
 
                                 <TableCell className="text-center">

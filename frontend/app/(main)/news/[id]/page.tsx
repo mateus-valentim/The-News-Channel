@@ -64,7 +64,7 @@ export default function NewsPage() {
             <div className="max-w-4xl mx-auto px-4 md:px-6 py-12 md:py-16">
                 <div className="flex justify-center">
                     <span className="rounded-full bg-blue-100 text-blue-700 px-4 py-1 text-sm font-medium">
-                        {news.category?.name}
+                        {news?.category?.name}
                     </span>
                 </div>
                 <h1 className="mt-6 text-center text-3xl md:text-5xl font-extrabold leading-tight text-gray-900">

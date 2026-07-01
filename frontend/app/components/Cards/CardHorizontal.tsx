@@ -26,7 +26,7 @@ export default function CardHorizontal({ news, variant, onClick }: NewsProps) {
                     <h2 className="text-lg text-white font-mono h-[50%] overflow-x-auto transition-colors duration-300 group-hover:text-blue-400">
                         {news?.title}
                     </h2>
-                    <p className="text-gray-500/80 h-[50%] overflow-x-auto text-xs sm:text-sm"> {news?.category.name || "Sem categoria"}</p>
+                    <p className="text-gray-500/80 h-[50%] overflow-x-auto text-xs sm:text-sm"> {news?.category?.name || "Sem categoria"}</p>
 
                     <div className="flex flex-row flex-wrap w-1/2 h-full overflow-auto gap-1 mt-1">
                         {news?.tags?.map(tag => (

@@ -267,6 +267,8 @@ export default function EditNews({ params }: { params: Promise<{ id: string }> }
                         size="lg"
                         onClick={handleSubmit}
                         disabled={isSubmitting}
+                        variant={null}
+                        className="post_button"
                     >
                         {isSubmitting ? "Publicando..." : "Publicar Notícia"}
                     </Button>
