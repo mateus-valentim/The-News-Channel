@@ -39,7 +39,7 @@ class NewsFactory extends Factory
 
             'content_html' => '<p>' . fake()->paragraph() . '</p>',
 
-            'cover_image' => 'news/9mGolVyvKdF9CEjRveLNFqQzJKk2AKYZ6KzX9Ine.jpg',
+            'cover_image' => "https://images.unsplash.com/photo-1513438205128-16af16280739?ixlib=rb-1.2.1&auto=format&fit=crop&w=935&q=80",
 
             'category_id' => Category::inRandomOrder()->first()?->id ?? Category::factory(),
 

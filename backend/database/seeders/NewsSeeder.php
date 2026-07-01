@@ -20,7 +20,7 @@ class NewsSeeder extends Seeder
             ->each(function ($news) {
                 $news->tags()->attach(
                     Tag::inRandomOrder()
-                        ->limit(rand(1, 5))
+                        ->limit(rand(1, 3))
                         ->pluck('id')
                 );
             });
