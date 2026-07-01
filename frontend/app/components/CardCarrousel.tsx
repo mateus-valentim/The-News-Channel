@@ -23,7 +23,6 @@ export function CardCarrousel() {
     const fetchNews = useCallback(async () => {
         try {
             setIsLoading(true);
-            // Buscamos as mais vistas ordenadas pelo backend
             const response = await NewsActions.getAll({
                 sort_by: "views",
             });
@@ -67,7 +66,7 @@ export function CardCarrousel() {
                                 <CardVertical
                                     news={noticia}
                                     variant="slider"
-                                    onClick={() => router.push(`/${noticia.id}/news`)}
+                                    onClick={() => router.push(`/news/${noticia.id}`)}
                                 />
                             </div>
                         </CarouselItem>

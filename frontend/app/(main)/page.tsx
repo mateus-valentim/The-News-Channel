@@ -49,7 +49,7 @@ export default function Home() {
         void fetchNews();
     }, [fetchNews]);
 
-    const isSearching = title !== "" || category !== null || tags.length > 0 || page > 1;
+    const isSearching = title !== "" || category !== null || tags.length > 0;
 
     return (
         <div className="bg-mist-100 min-h-screen">
@@ -95,9 +95,9 @@ export default function Home() {
                     ) :
                     (
                         <>
-                            {!isSearching && (
+                            {!isSearching && page<=1 && (
                                 <>
-                                    <div className="flex items-center gap-2 mt-6 px-3">
+                                    <div className="flex items-center gap-2 mt-6 px-3 justify-center lg:justify-start">
                                         <Eye className="w-6 h-6 text-blue-500" />
                                         <h2 className="text-2xl font-bold text-gray-800">
                                             Mais visualizadas
@@ -106,8 +106,8 @@ export default function Home() {
                                     <CardCarrousel></CardCarrousel>
                                 </>
                             )}
-                            <div className="w-full px-3 flex flex-col mt-10 w-full text-center md:text-left">
-                                <div className="flex items-center justify-center md:justify-start gap-2">
+                            <div className="w-full px-3 flex flex-col mt-10 w-full text-center lg:text-left">
+                                <div className="flex items-center justify-center lg:justify-start gap-2">
                                     <Sparkles className="w-5 h-5 text-blue-500" />
                                     <h2 className="text-2xl font-bold text-gray-900 ">
                                         {isSearching ? "Resultados da busca" : "Últimas Atualizações"}
@@ -129,7 +129,7 @@ export default function Home() {
                                             key={item.id}
                                             news={item}
                                             variant={isOverlay ? "overlay" : "horizontal"}
-                                            onClick={() => router.push(`/${item.id}/news`)}
+                                            onClick={() => router.push(`/news/${item.id}`)}
                                         />
                                     );
                                 })}
@@ -140,7 +140,7 @@ export default function Home() {
                                     <CardVertical
                                         key={item.id}
                                         news={item}
-                                        onClick={() => router.push(`/${item.id}/news`)}
+                                        onClick={() => router.push(`/news/${item.id}`)}
                                         variant="default"
                                     />
                                 ))}
