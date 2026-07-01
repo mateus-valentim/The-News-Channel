@@ -23,7 +23,23 @@ export function InputButton({
                     value={value}
                     onChange={(e) => onChange(e.target.value)}
                     placeholder="Digite para pesquisar..."
-                    className="h-11 rounded-xl border-gray-200 bg-white pl-10 shadow-sm transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
+                    className="
+                        h-11
+                        rounded-xl
+                        border
+                        border-gray-200
+                        bg-white
+                        pl-10
+                        shadow-sm
+                        outline-none
+                        transition-all
+                        focus:border-blue-500
+                        focus:ring-4
+                        focus:ring-blue-500/20
+                        focus-visible:border-blue-500
+                        focus-visible:ring-4
+                        focus-visible:ring-blue-500/20
+                    "
                 />
             </div>
         </Field>

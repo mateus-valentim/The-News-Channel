@@ -4,7 +4,7 @@ import {Pagination} from "@/app/types/paginate";
 
 
 export const NewsActions = {
-    getAll: (params?: {title?:string; category_id?: number; user_id?: number; tag_id?: number[]; page?:number; sort_by?:string; order_by?:string; paginate_by?:string}) => {
+    getAll: (params?: {title?:string; category_id?: number|null; user_id?: number; tag_id?: number[]; page?:number; sort_by?:string; order_by?:string; paginate_by?:string}) => {
         return apiRequest<Pagination<News>>('/api/v1/news', 'GET', params);
     },
 

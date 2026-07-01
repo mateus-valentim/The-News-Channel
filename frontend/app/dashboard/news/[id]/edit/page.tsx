@@ -24,8 +24,6 @@ import {SimpleEditor} from "@/components/tiptap-templates/simple/simple-editor";
 import axios from "axios";
 import {useRouter} from "next/navigation";
 import {NewsActions} from "@/app/actions/news";
-import {TagActions} from "@/app/actions/tag";
-import {News} from "@/app/types/news";
 import {NewsPreview} from "@/app/components/NewsPreview";
 
 interface tag{
@@ -49,7 +47,7 @@ export default function EditNews({ params }: { params: Promise<{ id: string }> }
     const router = useRouter();
 
     useEffect(() => {
-        async function fetchTags() {
+        async function fetchNews() {
             try {
                 setIsLoading(true);
 
@@ -90,7 +88,7 @@ export default function EditNews({ params }: { params: Promise<{ id: string }> }
             }
         }
 
-        void fetchTags();
+        void fetchNews();
     },[])
 
     function handleImageChange(e: React.ChangeEvent<HTMLInputElement>) {

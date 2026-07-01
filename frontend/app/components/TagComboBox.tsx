@@ -66,10 +66,10 @@ const MultipleSelectorDemo = ({onChange, value}:TagSelectorProps) => {
 
     return (
         <div className="w-full ">
-            <MultipleSelector className='w-full rounded-lg'
+            <MultipleSelector className='w-full rounded-lg bg-gray-50'
                 defaultOptions={options}
                 value={selectedOptions}
-                placeholder="Selecione as tags."
+                placeholder="Selecione as tags"
                 emptyIndicator={
                     <p className="text-center text-lg leading-10 text-gray-600 dark:text-gray-400">
                         Nenhuma tag foi achada

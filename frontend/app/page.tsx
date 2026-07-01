@@ -1,65 +1,110 @@
-import Image from "next/image";
+'use client'
+
+import { useCallback, useEffect, useState } from "react";
+
+import CardHorizontal from "@/app/components/Cards/CardHorizontal";
+import CardVertical from "@/app/components/Cards/CardVertical";
+import NewsSearchBar from "@/app/components/HomeSearchBar";
+
+import { NewsActions } from "@/app/actions/news";
+import { News } from "@/app/types/news";
+import { Pagination } from "@/app/types/paginate";
+import { CrudPagination } from "@/app/components/pagination/Paginate";
+import { useRouter } from "next/navigation";
+
 
 export default function Home() {
-  return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans ">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white  sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+
+    const router = useRouter();
+
+    const [isLoading, setIsLoading] = useState(false);
+    const [news, setNews] = useState<News[]>([]);
+    const [page, setPage] = useState(1);
+    const [pagination, setPagination] = useState<Pagination<News> | null>(null);
+    const [search, setSearch] = useState("");
+    const [category, setCategory] = useState<number | null>(null);
+    const [tags, setTags] = useState<number[]>([]);
+    const [title, setTitle] = useState("");
+
+    const fetchNews = useCallback(async () => {
+        try {
+            setIsLoading(true);
+
+            const response = await NewsActions.getAll({
+                page,
+                category_id: category,
+                tag_id: tags,
+                title: title
+            });
+
+            setNews(response.data);
+            setPagination(response);
+        } finally {
+            setIsLoading(false);
+        }
+    }, [page, category, tags, title]);
+
+    useEffect(() => {
+        void fetchNews();
+    }, [fetchNews]);
+
+    return (
+        <div className="bg-mist-100">
+            <main className="mx-auto flex w-[95vw] flex-col gap-8 ">
+
+                <div className="mt-8">
+                    <NewsSearchBar
+                        search={search}
+                        category={category}
+                        tags={tags}
+                        onSearchChange={setSearch}
+                        onCategoryChange={setCategory}
+                        onTagsChange={setTags}
+                        onClear={() => {
+                            setSearch("");
+                            setCategory(null);
+                            setTags([]);
+                            setTitle("")
+                        }}
+                        onButtonClick={()=>setTitle(search)}
+                    />
+                </div>
+
+                <div className="flex w-full flex-wrap">
+                    {news.slice(0, 6).map((item, index) => {
+                        const isOverlay = index === 0 || index === 5;
+
+                        return (
+                            <CardHorizontal
+                                key={item.id}
+                                news={item}
+                                variant={isOverlay ? "overlay" : "horizontal"}
+                                onClick={() => router.push(`/${item.id}/news`)}
+                            />
+                        );
+                    })}
+                </div>
+
+                <div className="mb-10 flex w-full flex-wrap">
+                    {news.slice(6, 10).map((item) => (
+                        <CardVertical
+                            key={item.id}
+                            news={item}
+                            onClick={() => router.push(`/${item.id}/news`)}
+                        />
+                    ))}
+                </div>
+
+                {pagination && news.length > 0 && (
+                    <div className="mb-10 flex justify-center">
+                        <CrudPagination
+                            currentPage={pagination.current_page}
+                            lastPage={pagination.last_page}
+                            onPageChange={setPage}
+                        />
+                    </div>
+                )}
+            </main>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
-  );
+    );
 }

@@ -36,6 +36,8 @@ interface AppSidebarProps {
 
 
 export function AppSidebar({ user, logout }: AppSidebarProps) {
+    const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL
+    const authorAvatar = user?.profile_image ? `${backendUrl}/storage/${user.profile_image}` : `https://ui-avatars.com/api/?name=${encodeURIComponent(user.name)}&background=random`;
     const { setOpenMobile } = useSidebar();
     const pathname = usePathname();
 
@@ -82,14 +84,12 @@ export function AppSidebar({ user, logout }: AppSidebarProps) {
                     <SidebarMenuItem>
                         <div className="flex items-center gap-3 px-2 py-3">
                             {user.profile_image ? (
-                                <Image
-                                    src={user.profile_image}
+                                <img
+                                    src={authorAvatar}
                                     alt={user.name}
-                                    width={32}
-                                    height={32}
-                                    className="rounded-full object-cover border border-gray-200"
+                                    className="h-8 w-8 rounded-full border border-gray-200 object-cover"
                                 />
-                            ) : (
+                            ) :  (
                                 <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-sm font-medium">
                                     {user.name.charAt(0)}
                                 </div>

@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/table"
 import { News } from "@/app/types/news"
 import {TableSortHeader} from '../TableSortHeader'
-import {Pencil, Trash2} from "lucide-react";
+import {Pencil} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {NewsDeleteDialog} from "@/app/components/dialogs/news/NewsDeleteDialog";
 import {useRouter} from "next/navigation";

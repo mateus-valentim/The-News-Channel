@@ -24,6 +24,8 @@ export interface News {
     user:{
         id: number;
         name: string;
+        profile_image: string;
+
     };
     tags:{
         id: number;

@@ -1,6 +1,6 @@
 "use client"
 
-import {useEffect, useMemo, useState} from "react"
+import React, {useEffect, useMemo, useState} from "react"
 import {
     Combobox,
     ComboboxContent,
@@ -48,27 +48,52 @@ export default function CategoryComboBox({onChange, value}: comboBoxProps) {
         return category ? String(category.name) : null;
     }, [value, categories]);
 
+    if (isLoading) {
+        return (
+            <div className="flex justify-center py-6">
+                <Loader2 className="h-6 w-6 animate-spin text-blue-600" />
+            </div>
+        );
+    }
+
 
     return (
+        <Combobox
+            items={categories}
+            value={selectedCategoryName ?? null}
 
-        <Combobox items={categories} value={selectedCategoryName ?? null}>
-            <ComboboxInput placeholder="Selecione uma categoria" />
-            <ComboboxContent>
+        >
+            <ComboboxInput
+                placeholder="Selecione uma categoria"
+                className="bg-white p-4.5 rounded-lg border border-gray-200"
+            />
+
+            <ComboboxContent className="bg-white rounded border border-gray-200 shadow-lg p-3">
                 {isLoading ? (
-                    <ComboboxEmpty>
-                        <Loader2 className="animate-spin text-blue-500" size={40} />
+                    <ComboboxEmpty className="py-6">
+                        <Loader2 className="mx-auto animate-spin text-blue-500" size={40} />
                     </ComboboxEmpty>
-                ):
-                    <><ComboboxEmpty>No items found.</ComboboxEmpty><ComboboxList>
-                        {(item) => (
-                            <ComboboxItem key={item.id} value={String(item.name)} onClick={() => onChange?.(Number(item.id))}>
-                                {item.name}
-                            </ComboboxItem>
-                        )}
-                    </ComboboxList></>
-                }
+                ) : (
+                    <>
+                        <ComboboxEmpty className="py-6">
+                            No items found.
+                        </ComboboxEmpty>
 
+                        <ComboboxList>
+                            {(item) => (
+                                <ComboboxItem
+                                    key={item.id}
+                                    value={String(item.name)}
+                                    onClick={() => onChange?.(Number(item.id))}
+                                    className="rounded-lg px-4 py-3"
+                                >
+                                    {item.name}
+                                </ComboboxItem>
+                            )}
+                        </ComboboxList>
+                    </>
+                )}
             </ComboboxContent>
         </Combobox>
-    )
+    );
 }
