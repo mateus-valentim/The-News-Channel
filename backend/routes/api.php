@@ -16,12 +16,19 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 Route::prefix('v1')->group(function () {
     Route::get('/categories/all', [CategoryController::class, 'showAll']);
     Route::get('/tags/all', [TagController::class, 'showAll']);
+    Route::apiResource('categories', CategoryController::class)->only(['index', 'show']);
+    Route::apiResource('tags', TagController::class)->only(['index', 'show']);
+    Route::apiResource('news', NewsController::class)->only(['index', 'show']);
 
-    Route::apiResource('categories', CategoryController::class);
-    Route::apiResource('tags', TagController::class);
-    Route::apiResource('news', NewsController::class);
-    Route::apiResource('users', UserController::class);
-    Route::get('/dashboard/stats', [DashboardController::class, 'getStats']);
-    Route::post('/images/upload', [ImageController::class, 'StoreNewsImage']);
+    Route::middleware('auth:sanctum')->group(function () {
+
+        Route::apiResource('categories', CategoryController::class)->except(['index', 'show']);
+        Route::apiResource('tags', TagController::class)->except(['index', 'show']);
+        Route::apiResource('news', NewsController::class)->except(['index', 'show']);
+        Route::apiResource('users', UserController::class);
+        Route::get('/dashboard/stats', [DashboardController::class, 'getStats']);
+        Route::post('/images/upload', [ImageController::class, 'StoreNewsImage']);
+
+    });
 });
 
