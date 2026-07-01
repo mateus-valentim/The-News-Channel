@@ -102,13 +102,13 @@ export default function LoginPage() {
                         </label>
                     </div>
 
-                    <div className="mt-4 flex items-center justify-end">
+                    <div className="mt-4 flex items-center justify-end cursor-pointer">
 
 
                         <button
                             type="submit"
                             disabled={isLoggingIn}
-                            className="flex w-full justify-center items-center gap-2 rounded-md bg-blue-600 px-3 py-2 text-white disabled:opacity-70 disabled:cursor-not-allowed"
+                            className="flex w-full justify-center items-center gap-2 rounded-md bg-blue-600 px-3 py-2 text-white disabled:opacity-70 disabled:cursor-not-allowed cursor-pointer"
                         >
                             {isLoggingIn ? (
                                 <>

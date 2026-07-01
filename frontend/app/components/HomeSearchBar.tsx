@@ -5,7 +5,7 @@ import { Search, SlidersHorizontal, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import {InputButton} from "@/app/components/Input";
+import { InputButton } from "@/app/components/Input";
 import CategoryComboBox from "@/app/components/CategoryComboBox";
 import TagComboBox from "@/app/components/TagComboBox";
 
@@ -21,7 +21,7 @@ interface NewsSearchBarProps {
     onButtonClick?: () => void;
 }
 
-export default function NewsSearchBar({
+export default function HomeSearchBar({
                                           search,
                                           category,
                                           tags,
@@ -34,8 +34,8 @@ export default function NewsSearchBar({
     const [advancedOpen, setAdvancedOpen] = useState(false);
 
     return (
-        <div className="w-full rounded-2xl border bg-white shadow-sm">
-            <div className="flex flex-col gap-3 p-4 lg:flex-row lg:items-center">
+        <div className="w-full rounded-2xl border bg-white shadow-sm overflow-hidden">
+            <div className="flex flex-col gap-3 p-4 lg:flex-row lg:items-center relative z-10 bg-white">
                 <div className="flex-1">
                     <InputButton
                         value={search}
@@ -43,7 +43,7 @@ export default function NewsSearchBar({
                     />
                 </div>
 
-                <div className="flex gap-2">
+                <div className="flex gap-2 justify-between">
                     <Button
                         type="button"
                         variant="outline"
@@ -66,13 +66,21 @@ export default function NewsSearchBar({
                 </div>
             </div>
 
-            {advancedOpen && (
-                <>
+            <div
+                style={{
+                    display: "grid",
+                    gridTemplateRows: advancedOpen ? "1fr" : "0fr",
+                    opacity: advancedOpen ? 1 : 0,
+                    transition: "grid-template-rows 300ms ease, opacity 300ms ease",
+                    pointerEvents: advancedOpen ? "auto" : "none",
+                }}
+            >
+                <div className="overflow-hidden">
                     <Separator />
 
-                    <div className="space-y-6 p-5">
-                        <div className="grid gap-6 lg:grid-cols-2">
-                            <div className="space-y-6">
+                    <div className="p-5">
+                        <div className="grid gap-6 lg:grid-cols-2 mb-5">
+                            <div >
                                 <label className="text-sm font-medium text-gray-700">
                                     Category
                                 </label>
@@ -85,7 +93,7 @@ export default function NewsSearchBar({
                                 </div>
                             </div>
 
-                            <div className="space-y-2">
+                            <div>
                                 <label className="text-sm font-medium text-gray-700">
                                     Tags
                                 </label>
@@ -104,13 +112,13 @@ export default function NewsSearchBar({
                                 className="delete_button"
                                 onClick={onClear}
                             >
-                                <X className="mr-2 h-4 w-4" />
+                                <X className="h-4 w-4" />
                                 Clear Filters
                             </Button>
                         </div>
                     </div>
-                </>
-            )}
+                </div>
+            </div>
         </div>
     );
 }

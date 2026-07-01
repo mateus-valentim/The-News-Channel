@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { SwrProvider } from './swr-provider';
 import { Montserrat, Roboto, Poppins } from 'next/font/google';
+import Navbar from "@/app/components/navbar";
 
 const montserrat = Montserrat({
   subsets: ['latin'],

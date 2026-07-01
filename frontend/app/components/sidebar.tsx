@@ -37,7 +37,8 @@ interface AppSidebarProps {
 
 export function AppSidebar({ user, logout }: AppSidebarProps) {
     const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL
-    const authorAvatar = user?.profile_image ? `${backendUrl}/storage/${user.profile_image}` : `https://ui-avatars.com/api/?name=${encodeURIComponent(user.name)}&background=random`;
+    const authorAvatar = !user?.profile_image
+        ? `https://ui-avatars.com/api/?name=${encodeURIComponent(user?.name || 'User')}&background=random` : user.profile_image.startsWith('http') ? user.profile_image : `${backendUrl}/storage/${user.profile_image}`;
     const { setOpenMobile } = useSidebar();
     const pathname = usePathname();
 

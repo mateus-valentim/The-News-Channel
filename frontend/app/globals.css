@@ -168,6 +168,32 @@ body {
     @apply h-11 p-5 rounded-xl bg-blue-600 text-white font-medium shadow-sm transition-all duration-200 hover:bg-blue-500 hover:shadow-md hover:-translate-y-0.5 hover:text-white active:translate-y-0 active:shadow-sm flex items-center gap-2;
   }
 
+  .tag-pill {
+    @apply py-0.5 text-white rounded-full bg-green-500 px-3 text-xs;
+  }
 
+  .card-base-style {
+    @apply overflow-hidden rounded bg-mist-50 border-blue-400 border w-full;
+  }
+
+  .author-avatar {
+    @apply rounded-full w-10 shrink-0 overflow-hidden h-10;
+  }
+
+  .full-cover-img {
+    @apply object-cover w-full h-full;
+  }
+
+  .view-count-wrap {
+    @apply gap-1.5 flex flex-row text-sm;
+  }
+
+  .author-wrap {
+    @apply items-center inline-flex min-w-0;
+  }
+
+  .overlay-shade {
+    @apply absolute inset-0 pointer-events-none;
+  }
 
 }

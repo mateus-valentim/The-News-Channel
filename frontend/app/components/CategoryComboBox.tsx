@@ -65,10 +65,10 @@ export default function CategoryComboBox({onChange, value}: comboBoxProps) {
         >
             <ComboboxInput
                 placeholder="Selecione uma categoria"
-                className="bg-white p-4.5 rounded-lg border border-gray-200"
+                className="h-10 rounded-lg border px-3 text-sm shadow-sm"
             />
 
-            <ComboboxContent className="bg-white rounded border border-gray-200 shadow-lg p-3">
+            <ComboboxContent className=" mt-2 rounded-lg">
                 {isLoading ? (
                     <ComboboxEmpty className="py-6">
                         <Loader2 className="mx-auto animate-spin text-blue-500" size={40} />
@@ -79,13 +79,13 @@ export default function CategoryComboBox({onChange, value}: comboBoxProps) {
                             No items found.
                         </ComboboxEmpty>
 
-                        <ComboboxList>
+                        <ComboboxList className="p-2">
                             {(item) => (
                                 <ComboboxItem
                                     key={item.id}
                                     value={String(item.name)}
                                     onClick={() => onChange?.(Number(item.id))}
-                                    className="rounded-lg px-4 py-3"
+                                    className="rounded-md px-3 py-2 text-sm"
                                 >
                                     {item.name}
                                 </ComboboxItem>

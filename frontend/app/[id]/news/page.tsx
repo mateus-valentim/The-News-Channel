@@ -56,13 +56,8 @@ export default function NewsPage() {
         );
     }
 
-    const cover = news.cover_image
-        ? `${backend}/storage/${news.cover_image}`
-        : "/placeholder.jpg";
-
-    const avatar = news.user?.profile_image
-        ? `${backend}/storage/${news.user.profile_image}`
-        : `https://ui-avatars.com/api/?name=${encodeURIComponent(news.user.name)}&background=random`;
+    const cover = !news?.cover_image ? "https://images.unsplash.com/photo-1513438205128-16af16280739?ixlib=rb-1.2.1&auto=format&fit=crop&w=935&q=80" : news.cover_image.startsWith('http') ? news.cover_image : `${backend}/storage/${news.cover_image}`;
+    const avatar = !news?.user?.profile_image ? `https://ui-avatars.com/api/?name=${encodeURIComponent(news?.user?.name || 'User')}&background=random` : news?.user.profile_image.startsWith('http') ? news?.user.profile_image : `${backend}/storage/${news?.user.profile_image}`;
 
     return (
         <main className="bg-gray-50 min-h-screen">

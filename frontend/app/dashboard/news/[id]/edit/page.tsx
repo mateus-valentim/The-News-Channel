@@ -73,10 +73,13 @@ export default function EditNews({ params }: { params: Promise<{ id: string }> }
 
                 setContentHtml(news.content_html);
 
-                if(news.cover_image){
-                    setPreview(`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/${news.cover_image}`)
+                if (news.cover_image) {
+                    if (news.cover_image.startsWith('http')) {
+                        setPreview(news.cover_image);
+                    } else {
+                        setPreview(`${process.env.NEXT_PUBLIC_BACKEND_URL}/storage/${news.cover_image}`);
+                    }
                 }
-                console.log(preview)
 
 
             }catch (error) {
