@@ -31,7 +31,7 @@ class NewsController extends Controller
 
         $orderBy = strtolower($request->query('order_by', 'desc')) === 'asc' ? 'asc' : 'desc';
 
-        $news = News::query()->with(['category:id,name', 'user:id,name', 'tags:id,name'])
+        $news = News::query()->with(['category:id,name', 'user:id,name,profile_image', 'tags:id,name'])
         ->when($searchTitle, function ($query, $searchTitle) {
             return $query->where('title', 'like', '%'.$searchTitle.'%');
         })
@@ -91,7 +91,7 @@ class NewsController extends Controller
 
         return response()->json($news->fresh()->load([
             'tags:id,name',
-            'user:id,name',
+            'user:id,name,profile_image',
             'category:id,name',
         ]), 200);
     }
