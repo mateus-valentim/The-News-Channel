@@ -74,14 +74,14 @@ export function TagPostDialog({id, name, onSuccess}: Props) {
                     id
                         ? `put_button`
                         : `post_button`}
-                >    {id ? <Pencil size={18} /> : <Plus size={18} />}{!id && "Criar Categoria"}</Button>
+                >    {id ? <Pencil size={18} /> : <Plus size={18} />}{!id && "Criar tag"}</Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-sm font-mono">
                 <form onSubmit={handleSubmit}>
                     <DialogHeader>
-                        <DialogTitle>{id?'Editar' : "Criar"} Categoria</DialogTitle>
+                        <DialogTitle>{id?'Editar' : "Criar"} Tag</DialogTitle>
                         <DialogDescription>
-                            {id?"Edite a vategoria selecionada!":"Crie uma nova categoria aqui!"}
+                            {id?"Edite a vategoria selecionada!":"Crie uma nova tag aqui!"}
                         </DialogDescription>
                     </DialogHeader>
                     <FieldGroup>
