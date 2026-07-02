@@ -51,7 +51,7 @@ export default function HomeSearchBar({
                         onClick={() => setAdvancedOpen((v) => !v)}
                     >
                         <SlidersHorizontal className="mr-2 h-4 w-4" />
-                        Advanced Filters
+                        Pesquisa Avançada
                     </Button>
 
                     <Button
@@ -61,7 +61,7 @@ export default function HomeSearchBar({
                         onClick={onButtonClick}
                     >
                         <Search className="mr-2 h-4 w-4" />
-                        Search
+                        Buscar
                     </Button>
                 </div>
             </div>
@@ -113,7 +113,7 @@ export default function HomeSearchBar({
                                 onClick={onClear}
                             >
                                 <X className="h-4 w-4" />
-                                Clear Filters
+                                Retirar Filtros
                             </Button>
                         </div>
                     </div>
