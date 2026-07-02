@@ -26,6 +26,13 @@ class DatabaseSeeder extends Seeder
             'profile_image' => 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png',
         ]);
 
+        User::factory()->create([
+            'name' => 'Mateus Valentim',
+            'email' => 'mateus@example.com',
+            'password' => Hash::make('password'),
+            'profile_image' => 'https://avatars.githubusercontent.com/u/106673935?v=4',
+        ]);
+
         $this->call([
             CategorySeeder::class,
             TagSeeder::class,
