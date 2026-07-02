@@ -74,7 +74,7 @@ export function TagPostDialog({id, name, onSuccess}: Props) {
                     id
                         ? `put_button`
                         : `post_button`}
-                >    {id ? <Pencil size={18} /> : <Plus size={18} />}{!id && "Criar tag"}</Button>
+                >    {id ? <Pencil size={18} /> : <Plus size={18} />}{!id && "Criar Tag"}</Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-sm font-mono">
                 <form onSubmit={handleSubmit}>
